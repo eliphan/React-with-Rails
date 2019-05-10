@@ -1,22 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { Button, Card, Image, Icon, Label } from "semantic-ui-react";
 
 const GameCard = props => {
-  return (
-    <div>
-      <h1>GAMES</h1>
-      {props.games.map((game, index) => (
-        <div key={game.id}>
-          <ul>
-            <li>
-              <h3>{game.name}</h3>
-
-              <p>{game.summary}</p>
-            </li>
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
+  return <div>Card</div>;
 };
 
 export default GameCard;

@@ -9,6 +9,17 @@ export function fetchGames() {
   };
 }
 
+export function fetchRPGGames() {
+  return dispatch => {
+    dispatch({ type: "LOADING_GAMES" });
+    return fetch("/api/rpg")
+      .then(response => response.json())
+      .then(responseJson => {
+        dispatch({ type: "FETCH_GAMES", games: responseJson });
+      });
+  };
+}
+
 export const selectGame = game => {
   return {
     type: "SELECT_GAME",

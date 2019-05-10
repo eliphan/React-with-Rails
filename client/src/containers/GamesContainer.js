@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import GameCard from "../components/GameCard";
 import GameList from "../components/GameList";
 import { fetchGames } from "../actions/index";
-import axios from "axios";
 
 class GamesContainer extends Component {
   constructor() {
@@ -30,31 +29,11 @@ class GamesContainer extends Component {
 
   render() {
     return (
-      <div class="ui container">
-        <GameList />
-        <GameCard
-          games={this.props.games}
-          summary={this.props.games.summary}
-          first_release_date={this.props.games.first_release_date}
-        />
+      <div className="ui container">
+        <GameList games={this.props.games} summary={this.props.games.summary} />
       </div>
     );
   }
-  //   return (
-  //     <div>
-  //       <h1>GAMES</h1>
-  //       {this.state.games.map((game, index) => (
-  //         <div key={game.id}>
-  //           <ul>
-  //             <li>
-  //               <h3>{game.name}</h3>
-  //             </li>
-  //           </ul>
-  //         </div>
-  //       ))}
-  //     </div>
-  //   );
-  // }
 }
 const mapStateToProps = state => {
   return { games: state.games };
