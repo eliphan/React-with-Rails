@@ -20,16 +20,9 @@ export function fetchRPGGames() {
   };
 }
 
-export const selectGame = game => {
+export const getGAME = game => {
   return {
-    type: "SELECT_GAME",
-    game
-  };
-};
-
-export const addSelectedGame = game => {
-  return {
-    type: "ADD_SELECTED_GAME",
-    game
+    type: "GET_GAME",
+    game: game
   };
 };

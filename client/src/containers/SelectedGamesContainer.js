@@ -1,29 +1,63 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import GameCard from "../components/GameCard";
+import { fetchGames } from "../actions/index";
+import { getGame } from "../actions/index";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class SelectedGamesContainer extends Component {
   constructor() {
     super();
-
     this.state = {
+      games: [],
       game: []
     };
   }
-
-  handleOnClick = event => {
-    this.setState({ showComponent: true });
-  };
 
   componentDidMount() {
     this.props.fetchGames();
   }
 
+  setGame = () => {
+    const selectedGameId = this.props.match.params.gameId;
+    const selectedGame = this.props.games.find(game => game.id === 112916);
+
+    this.setState({
+      game: selectedGame
+    });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.game !== prevProps.game) {
+      this.setGame();
+    }
+  }
+
   render() {
-    return <div>{this.state.showComponent ? <GameCard /> : null}</div>;
+    console.log(this.props.match.params.gameId);
+    console.log(this.props.games.find(game => game.id === 112916));
+    console.log(this.state.game);
+    return (
+      <div>
+        <GameCard game={this.state.game} />
+      </div>
+    );
   }
 }
+
 const mapStateToProps = state => {
-  return { game: state.game };
+  return { games: state.games, game: state.game };
 };
 
-export default connect(mapStateToProps)(SelectedGamesContainer);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchGames: () => {
+      dispatch(fetchGames());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SelectedGamesContainer);

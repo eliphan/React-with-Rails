@@ -6,8 +6,8 @@ const GameList = props => {
   return (
     <div className="ui container">
       <h1>GAMES</h1>
-      {props.games.map((game, index) => (
-        <div className="ui container" key={index}>
+      {props.games.map(game => (
+        <div className="card-deck" key={game.id}>
           <Card.Group centered itemsPerRow="2">
             <Card>
               <Card.Content>
@@ -19,22 +19,14 @@ const GameList = props => {
                 />
                 <Card.Description>{game.summary}</Card.Description>
                 <br />
-                <Button fluid color="blue" onClick={() => <GameCard />}>
+                <Button
+                  fluid
+                  color="blue"
+                  key={game.id}
+                  href={`/games/${game.id}`}
+                >
                   Game Details
                 </Button>
-              </Card.Content>
-              <Card.Content extra>
-                <div className="ui buttons">
-                  <Button as="div" labelPosition="left">
-                    <Button color="red">
-                      <Icon name="heart" />
-                      Like
-                    </Button>
-                    <Label as="a" basic color="red" pointing="left">
-                      2,048
-                    </Label>
-                  </Button>
-                </div>
               </Card.Content>
             </Card>
           </Card.Group>

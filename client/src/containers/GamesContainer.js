@@ -1,27 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import GameCard from "../components/GameCard";
 import GameList from "../components/GameList";
+import GameCard from "../components/GameCard";
 import { fetchGames } from "../actions/index";
+import SelectedGamesContainer from "./SelectedGamesContainer";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class GamesContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      games: []
+      game: []
     };
   }
-
-  // componentDidMount() {
-  //   // axios
-  //   //   .get("/api/games")
-  //   //   .then(response => {
-  //   //     this.setState({ games: response.data });
-  //   //   })
-  //   //   .catch(error => console.log(error));
-
-  // }
 
   componentDidMount() {
     this.props.fetchGames();
@@ -35,6 +27,7 @@ class GamesContainer extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return { games: state.games };
 };

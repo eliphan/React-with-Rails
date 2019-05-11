@@ -1,7 +1,7 @@
 export default function combineReducers(
   state = {
     games: [],
-    selectedGames: []
+    game: []
   },
   action
 ) {
@@ -10,8 +10,10 @@ export default function combineReducers(
       return { ...state, loading: true };
     case "FETCH_GAMES":
       return { games: action.games };
-    case "SELECT_GAME":
-      return { game: action.game };
+    case "GET_GAME":
+      return { ...state.game, [action.game.id]: action.game };
+    case "CREATE_GAME":
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }
