@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import GamesContainer from "./containers/GamesContainer";
 import SelectedGamesContainer from "./containers/SelectedGamesContainer";
-
+import GameShow from "./containers/GameShow";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
@@ -16,11 +17,21 @@ class App extends React.Component {
             <Route path="/" exact component={Home} />
             <Route exact path="/all" component={GamesContainer} />
             <Route path="/games/:gameId" component={SelectedGamesContainer} />
+            <Route
+              path="/game/:gameId"
+              component={GameShow}
+              games={this.props.games}
+            />
           </div>
         </Router>
       </div>
     );
   }
 }
-
-export default App;
+const mapStateToProps = state => {
+  return {
+    games: state.games,
+    game: state.game
+  };
+};
+export default connect(mapStateToProps)(App);

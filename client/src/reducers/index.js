@@ -5,13 +5,16 @@ export default function combineReducers(
   },
   action
 ) {
+  let covers;
   switch (action.type) {
     case "LOADING_GAMES":
       return { ...state, loading: true };
     case "FETCH_GAMES":
       return { games: action.games };
-    case "GET_GAME":
-      return { ...state.game, [action.game.id]: action.game };
+    case "FETCH_COVERS":
+      return { ...state.games }.concat(covers);
+    case "GET_GAMES":
+      return { games: action.games };
     case "CREATE_GAME":
       return { ...state, [action.payload.id]: action.payload };
     default:

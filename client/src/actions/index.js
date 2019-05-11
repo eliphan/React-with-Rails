@@ -20,9 +20,20 @@ export function fetchRPGGames() {
   };
 }
 
-export const getGAME = game => {
+export function fetchCovers() {
+  return dispatch => {
+    dispatch({ type: "LOADING_GAMES" });
+    return fetch("/api/covers")
+      .then(response => response.json())
+      .then(responseJson => {
+        dispatch({ type: "FETCH_COVERS", covers: responseJson });
+      });
+  };
+}
+
+export const getGames = games => {
   return {
-    type: "GET_GAME",
-    game: game
+    type: "GET_GAMES",
+    games: games
   };
 };

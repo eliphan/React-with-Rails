@@ -19,9 +19,11 @@ class SelectedGamesContainer extends Component {
   }
 
   setGame = () => {
-    const selectedGameId = this.props.match.params.gameId;
-    const selectedGame = this.props.games.find(game => game.id === 112916);
-
+    const selectedGameId = parseInt(this.props.match.params.gameId);
+    console.log(typeof selectedGameId);
+    const selectedGame = this.props.games.find(
+      game => game.id === selectedGameId
+    );
     this.setState({
       game: selectedGame
     });
@@ -34,9 +36,8 @@ class SelectedGamesContainer extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.gameId);
-    console.log(this.props.games.find(game => game.id === 112916));
     console.log(this.state.game);
+
     return (
       <div>
         <GameCard game={this.state.game} />

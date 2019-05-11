@@ -5,6 +5,7 @@ import GameCard from "../components/GameCard";
 import { fetchGames } from "../actions/index";
 import SelectedGamesContainer from "./SelectedGamesContainer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import GameShow from "./GameShow";
 
 class GamesContainer extends Component {
   constructor() {
