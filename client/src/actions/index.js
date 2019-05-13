@@ -37,3 +37,10 @@ export const getGames = games => {
     games: games
   };
 };
+
+export const increaseLikes = likes => {
+  return {
+    type: "INCREASE_LIKES",
+    likes: likes + 1
+  };
+};

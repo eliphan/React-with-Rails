@@ -1,22 +1,21 @@
 export default function combineReducers(
   state = {
     games: [],
-    game: []
+    game: [],
+    covers: [],
+    likes: 0
   },
   action
 ) {
-  let covers;
   switch (action.type) {
     case "LOADING_GAMES":
       return { ...state, loading: true };
     case "FETCH_GAMES":
       return { games: action.games };
     case "FETCH_COVERS":
-      return { ...state.games }.concat(covers);
-    case "GET_GAMES":
-      return { games: action.games };
-    case "CREATE_GAME":
-      return { ...state, [action.payload.id]: action.payload };
+      return { covers: action.covers };
+    case "INCREASE_LIKES":
+      return { likes: state.likes + 1 };
     default:
       return state;
   }
