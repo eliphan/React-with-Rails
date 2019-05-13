@@ -13,9 +13,10 @@ const GameList = props => {
               <Card.Content>
                 <Card.Header>{game.name}</Card.Header>
                 <Image
+                  src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${
+                    game.cover.image_id
+                  }.jpg`}
                   fluid
-                  src="https://react.semantic-ui.com/images/wireframe/square-image.png"
-                  rounded
                 />
                 <Card.Description>{game.summary}</Card.Description>
                 <br />

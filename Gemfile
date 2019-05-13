@@ -33,6 +33,8 @@ gem 'devise'
 gem 'activeadmin'
 #foreman
 gem 'foreman'
+#faraday
+gem 'faraday'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
