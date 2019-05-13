@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   scope '/api' do
     resources :games, only: [:index]
     get '/rpg', to: 'games#rpg'
-    get '/covers', to: 'games#cover'
+    get '/covers', to: 'games#covers'
   end  
 end
