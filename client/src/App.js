@@ -24,11 +24,5 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    games: state.games,
-    game: state.game,
-    covers: state.covers
-  };
-};
-export default connect(mapStateToProps)(App);
+
+export default App;

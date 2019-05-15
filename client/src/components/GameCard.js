@@ -19,6 +19,7 @@ const GameCard = props => {
         <StarRating rating={props.game.aggregated_rating} />
         {props.game.aggregated_rating}/100
         <Divider />
+        {props.cover.url}
         {props.game.summary}
         <br />
       </div>

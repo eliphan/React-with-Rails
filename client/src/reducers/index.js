@@ -1,8 +1,7 @@
-export default function combineReducers(
+export default function rootReducer(
   state = {
     games: [],
     game: [],
-    covers: [],
     likes: 0
   },
   action
@@ -12,6 +11,7 @@ export default function combineReducers(
       return { ...state, loading: true };
     case "FETCH_GAMES":
       return { games: action.games };
+
     case "INCREASE_LIKES":
       return { likes: state.likes + 1 };
     default:
