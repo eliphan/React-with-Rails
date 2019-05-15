@@ -67,6 +67,9 @@ class SelectedGamesContainer extends Component {
         <GameCard
           game={this.state.game}
           cover={this.state.game.cover || []}
+          platforms={this.state.game.platforms || []}
+          screenshots={this.state.game.screenshots || []}
+          genres={this.state.game.genres || []}
           onClick={this.handleClick}
           likes={this.state.likes}
         />

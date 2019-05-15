@@ -9,17 +9,37 @@ const GameCard = props => {
     <div className="ui container">
       <h1>{props.game.name}</h1>
       <Image
-        alt="An example alt"
+        src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${
+          props.cover.image_id
+        }.jpg`}
         centered
-        size="large"
-        src="https://react.semantic-ui.com/images/wireframe/square-image.png"
       />
+      <Divider />
+      <br />
+      {props.screenshots.map((sc, id) => (
+        <div key={id}>
+          <Image
+            centered
+            src={`https://images.igdb.com/igdb/image/upload/t_screenshot_med/${
+              sc.image_id
+            }.jpg`}
+          />
+        </div>
+      ))}
+      <Divider />
       <div>
-        Rating:
-        <StarRating rating={props.game.aggregated_rating} />
-        {props.game.aggregated_rating}/100
+        Rating: {props.game.aggregated_rating}/100
+        <br />
+        Platforms:{" "}
+        {props.platforms.map((p, id) => (
+          <span key={id}>{p.abbreviation} </span>
+        )) || []}
+        <br />
+        Genre:{" "}
+        {props.genres.map((g, id) => (
+          <span key={id}>{g.name} </span>
+        ))}
         <Divider />
-        {props.cover.url}
         {props.game.summary}
         <br />
       </div>

@@ -5,7 +5,7 @@ class GamesController < ApiController
   def index
     http = Net::HTTP.new('api-v3.igdb.com', 80)
     request = Net::HTTP::Get.new(URI('https://api-v3.igdb.com/games'), {'user-key' => '943aec2336c7d82c5084fbaffa761249'})
-    request.body = 'fields cover.*, screenshots.*,platforms.*,age_ratings,aggregated_rating,artworks,bundles,category,collection,created_at,dlcs,expansions,external_games,first_release_date,follows,franchise,franchises,game_engines,game_modes,genres,hypes,involved_companies,keywords,multiplayer_modes,name,popularity,pulse_count,rating,rating_count,release_dates,screenshots,similar_games,slug,standalone_expansions,status,storyline,summary,tags,themes,time_to_beat,total_rating,total_rating_count,updated_at,url,websites; 
+    request.body = 'fields cover.*, screenshots.*,platforms.*,genres.*,age_ratings,aggregated_rating,artworks,bundles,category,collection,created_at,dlcs,expansions,external_games,first_release_date,follows,franchise,franchises,game_engines,game_modes,genres,hypes,involved_companies,keywords,multiplayer_modes,name,popularity,pulse_count,rating,rating_count,release_dates,screenshots,similar_games,slug,standalone_expansions,status,storyline,summary,tags,themes,time_to_beat,total_rating,total_rating_count,updated_at,url,websites; 
     sort popularity desc; limit 50;'
     render json:http.request(request).body
   end
