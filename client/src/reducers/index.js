@@ -1,8 +1,11 @@
+import cuid from "cuid";
+export const cuidFn = cuid;
+
 export default function rootReducer(
   state = {
     games: [],
     game: [],
-    likes: 0
+    like: []
   },
   action
 ) {
@@ -12,8 +15,9 @@ export default function rootReducer(
     case "FETCH_GAMES":
       return { games: action.games };
 
-    case "INCREASE_LIKES":
-      return { likes: state.likes + 1 };
+    case "ADD_LIKE":
+      const like = { game: action.game, count: action.count, id: cuidFn() };
+      return { ...state.like, like };
     default:
       return state;
   }

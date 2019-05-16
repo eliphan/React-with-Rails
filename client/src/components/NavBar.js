@@ -1,10 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "../index.css";
+import { Icon } from "semantic-ui-react";
 
 const NavBar = () => {
   return (
     <div className="navbar">
-      <NavLink to="/">Home</NavLink>
+      <NavLink
+        to="/"
+        activeStyle={{
+          color: "gray"
+        }}
+      >
+        <Icon name="home" size="small" /> Home
+      </NavLink>
     </div>
   );
 };

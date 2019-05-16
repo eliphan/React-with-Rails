@@ -20,16 +20,9 @@ export function fetchRPGGames() {
   };
 }
 
-export const addLike = like => {
+export function addLike(like) {
   return {
     type: "ADD_LIKE",
     like: like
-  }
-}
-
-export const increaseLikes = likes => {
-  return {
-    type: "INCREASE_LIKES",
-    likes: likes + 1
   };
 };

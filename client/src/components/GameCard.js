@@ -1,13 +1,24 @@
 import React from "react";
-import { Button, Card, Image, Icon, Label } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  Image,
+  Icon,
+  Label,
+  Header,
+  Rating
+} from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
 import StarRating from "./StarRating";
 
 const GameCard = props => {
-  console.log(props);
+
   return (
-    <div className="ui container">
-      <h1>{props.game.name}</h1>
+    <div className="container">
+      <Header as="h1" textAlign="center">
+        {props.game.name}
+      </Header>
+
       <Image
         src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${
           props.cover.image_id
@@ -28,7 +39,8 @@ const GameCard = props => {
       ))}
       <Divider />
       <div>
-        Rating: {props.game.aggregated_rating}/100
+        Rating: <Rating icon="star" defaultRating={3} maxRating={5} />{" "}
+        {props.game.aggregated_rating}/100
         <br />
         Platforms:{" "}
         {props.platforms.map((p, id) => (

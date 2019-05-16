@@ -1,11 +1,13 @@
 import React from "react";
 import GameCard from "./GameCard";
-import { Button, Card, Image, Icon, Label } from "semantic-ui-react";
+import { Button, Card, Image, Icon, Label, Header } from "semantic-ui-react";
 
 const GameList = props => {
   return (
-    <div className="ui container">
-      <h1>GAMES</h1>
+    <div className="container">
+      <Header as="h1" textAlign="center">
+        ALL GAMES
+      </Header>
       {props.games.map(game => (
         <div className="card-deck" key={game.id}>
           <Card.Group centered itemsPerRow="2">
