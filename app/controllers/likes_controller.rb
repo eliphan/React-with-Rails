@@ -10,6 +10,11 @@ class LikesController < ApiController
     render json: @like
   end
 
+  def show
+    @like = Like.find(params[:id])
+    render json: @like 
+  end
+
   private
     def like_params
       params.require(:like).permit(:game_id, :like_count)

@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   scope '/api' do
     resources :games, only: [:index, :create]
     get '/rpg', to: 'games#rpg'
-    resources :likes, only: [:index, :create]
+    resources :likes, only: [:index, :create, :show]
   end  
 end
