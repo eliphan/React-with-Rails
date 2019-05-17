@@ -25,4 +25,12 @@ export function addLike(like) {
     type: "ADD_LIKE",
     like: like
   };
-};
+}
+
+export function increaseCount(count) {
+  return {
+    type: 'INCREASE_COUNT',
+    count: count
+  }
+} 
+

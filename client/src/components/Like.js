@@ -3,15 +3,10 @@ import GameCard from "./GameCard";
 import { Button, Card, Image, Icon, Label, Header } from "semantic-ui-react";
 
 const Like = props => {
-  return (
-    <div>
-      {props.likes.map((like,id) => {
-        if(like.game_id === props.gameId)
-          return <div key={id}>{like.like_count}</div>
-        }
-      )}
-    </div>
-  )
-}
+  return props.likes
+    .filter(e => e.game_id === props.gameId)
+    .map(e => e.like_count)
+    .reduce((sum, value) => sum + value, 0);
+};
 
 export default Like;
