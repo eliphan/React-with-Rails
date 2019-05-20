@@ -12,7 +12,6 @@ import { Divider } from "semantic-ui-react";
 import StarRating from "./StarRating";
 
 const GameCard = props => {
-
   return (
     <div className="container">
       <Header as="h1" textAlign="center">
@@ -40,7 +39,7 @@ const GameCard = props => {
       <Divider />
       <div>
         Rating: <Rating icon="star" defaultRating={3} maxRating={5} />{" "}
-        {props.game.aggregated_rating}/100
+        {parseInt(props.game.aggregated_rating)}/100
         <br />
         Platforms:{" "}
         {props.platforms.map((p, id) => (

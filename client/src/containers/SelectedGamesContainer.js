@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import GameCard from "../components/GameCard";
 import { fetchGames } from "../actions/index";
 import { addLike } from "../actions/index";
-import { increaseCount } from "../actions/index";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LikeInput from "../components/LikeInput";
 
@@ -45,13 +44,12 @@ class SelectedGamesContainer extends Component {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(     
-        {like: {game_id: obj.game_id, like_count: this.state.like.count + 1}}
-      )
-    })
-      .then(res => res.json())
-      // .then(data => console.log(data))
-      // .catch(err => console.log(err));
+      body: JSON.stringify({
+        like: { game_id: obj.game_id, like_count: this.state.like.count + 1 }
+      })
+    }).then(res => res.json());
+    // .then(data => console.log(data))
+    // .catch(err => console.log(err));
   };
 
   componentDidUpdate(prevProps) {
@@ -77,7 +75,6 @@ class SelectedGamesContainer extends Component {
           game={this.state.game}
           gameId={this.state.game.id}
           addLike={this.props.addLike}
-          
         />
       </div>
     );
@@ -85,7 +82,12 @@ class SelectedGamesContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  return { games: state.games, game: state.game, like: state.like, count: state.count };
+  return {
+    games: state.games,
+    game: state.game,
+    like: state.like,
+    count: state.count
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -96,11 +98,6 @@ const mapDispatchToProps = dispatch => {
 
     addLike: like => {
       dispatch(addLike(like));
-    },
-
-     increaseCount: count => {
-      dispatch(increaseCount(count));
-    
     }
   };
 };

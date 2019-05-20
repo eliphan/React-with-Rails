@@ -26,11 +26,3 @@ export function addLike(like) {
     like: like
   };
 }
-
-export function increaseCount(count) {
-  return {
-    type: 'INCREASE_COUNT',
-    count: count
-  }
-} 
-

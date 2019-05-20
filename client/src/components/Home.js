@@ -1,21 +1,19 @@
 import React from "react";
 import { Button, Container } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import "../index.css";
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <Container fluid>
+    <div className="wrapper">
+      <div className="home-container">
         <p>Select a genre</p>
-        <Button primary href="/all">
-          All genres
-        </Button>
-        <Button primary href="rpg">
-          RPG (WIP)
-        </Button>
-
-        <Button primary>WIP</Button>
-      </Container>
+        <Link to="/all">
+          <button className="css-button">All genres</button>
+        </Link>
+        <button className="css-button">RPG (WIP)</button>
+        <button className="css-button">WIP</button>
+      </div>
     </div>
   );
 };

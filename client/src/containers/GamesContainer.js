@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import GameShow from "./GameShow";
 
 class GamesContainer extends Component {
-
   componentDidMount() {
     this.props.fetchGames();
   }
@@ -17,7 +16,7 @@ class GamesContainer extends Component {
     console.log(this.props.games);
 
     return (
-      <div className="ui container">
+      <div>
         <GameList
           games={this.props.games}
           summary={this.props.games.summary}

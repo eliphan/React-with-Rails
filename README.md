@@ -1,2 +1,11 @@
-This project is the first project that that I use React as front end and Rails as backend with data fetched from IGDB API.
-This app simply get data from the IGDB database and display video games in a list to the client.
+Video games database
+
+Desciption:
+This app let user find video games of certain genre and display the results sorted by popularity.
+
+On the homepage, click on any button to show a list of current popular video games. Currently, only 'All Genres' is available.
+
+Click on the 'Game Detail' button in any game card for detailed information of that game, including cover, screenshots, rating, platforms, and genres.
+User also can click on the 'Like' button to show support for the game. The like count is saved and will be updated accordingly. User may need to refresh the page to see the change in like count.
+
+This app is made with IGDB API.

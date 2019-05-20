@@ -11,16 +11,14 @@ import { Button } from "semantic-ui-react";
 class App extends React.Component {
   render() {
     return (
-      <div className="ui container">
-        <Router>
-          <div>
-            <NavBar />
-            <Route path="/" exact component={Home} />
-            <Route exact path="/all" component={GamesContainer} />
-            <Route path="/games/:gameId" component={SelectedGamesContainer} />
-          </div>
-        </Router>
-      </div>
+      <Router>
+        <div>
+          <NavBar />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/all" component={GamesContainer} />
+          <Route path="/games/:gameId" component={SelectedGamesContainer} />
+        </div>
+      </Router>
     );
   }
 }
