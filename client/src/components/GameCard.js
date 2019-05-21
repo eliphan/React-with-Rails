@@ -55,15 +55,6 @@ const GameCard = props => {
         <br />
       </div>
       <Divider />
-      <div className="ui buttons">
-        <Button color="red" onClick={props.onClick}>
-          <Icon name="heart" />
-          Like
-        </Button>
-        <Button basic color="red">
-          {props.likes}
-        </Button>
-      </div>
     </div>
   );
 };
