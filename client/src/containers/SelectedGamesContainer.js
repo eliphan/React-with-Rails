@@ -40,13 +40,6 @@ class SelectedGamesContainer extends Component {
     });
   };
 
-  // getGame = () => {
-  //   const selectedGameId = parseInt(this.props.match.params.gameId);
-  //   const selectedGame = this.props.games.find(
-  //     game => game.id === selectedGameId
-  //   );
-  // };
-
   // setGame = () => {
   //   const selectedGameId = parseInt(this.props.match.params.gameId);
   //   const selectedGame = this.props.games.find(
