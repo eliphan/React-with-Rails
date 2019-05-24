@@ -1,6 +1,6 @@
 import React from "react";
-import GameCard from "./GameCard";
-import { Button, Card, Image, Icon, Label, Header } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Button, Card, Image, Header } from "semantic-ui-react";
 
 const GameList = props => {
   return (
@@ -10,12 +10,16 @@ const GameList = props => {
       </Header>
       {props.games.map(game => (
         <div className="card-deck" key={game.id}>
-          <Card.Group centered itemsPerRow="2">
+          <Card.Group centered itemsPerRow="3">
             <Card>
               <Card.Content>
-                <Card.Header>{game.name}</Card.Header>
+                <Card.Header>
+                  <Link key={game.id} to={`/games/${game.id}`}>
+                    {game.name}
+                  </Link>
+                </Card.Header>
                 <Image
-                  src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${
+                  src={`https://images.igdb.com/igdb/image/upload/t_1080p/${
                     game.cover.image_id
                   }.jpg`}
                   fluid

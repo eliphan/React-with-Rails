@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, Card, Image, Icon, Label } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 import axios from "axios";
 import Like from "./Like";
+import { increaseLike } from "../actions/index";
+import { getLikes } from "../actions/index";
 
 class LikeInput extends Component {
   constructor(props) {
@@ -11,59 +13,26 @@ class LikeInput extends Component {
       count: 0
     };
   }
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  };
 
   handleOnClick = event => {
     event.preventDefault();
-    this.props.addLike({ game_id: this.props.gameId, count: this.state.count });
-
-    this.increment();
-
-    axios
-      .post("/api/likes", {
-        like: {
-          game_id: this.props.gameId,
-          like_count: this.state.count + 1
-        }
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => console.log(error));
+    this.props.increaseLike({
+      game_id: this.props.gameId,
+      like_count: this.state.count + 1
+    });
   };
 
   getLikes() {
-    axios
-      .get("/api/likes/")
-      .then(response => {
-        console.log(response);
-        this.setState({ likes: response.data });
-        this.getLike(response[0].id);
-      })
-      .catch(error => console.log(error));
+    axios.get("/api/likes/").then(response => {
+      this.setState({ like: response.data });
+    });
   }
 
-  getLike(id) {
-    axios
-      .get(`/api/likes/${id}`)
-      .then(response => {
-        this.setState({ like: response.data });
-      })
-      .catch(error => console.log(error));
-  }
-
-  componentDidMount() {
-    this.getLikes();
-  }
+  // componentDidMount() {
+  //   this.props.getLikes();
+  // }
 
   render() {
-    console.log("this is state");
-    console.log(this.state);
-    console.log("this is props");
     console.log(this.props);
     return (
       <div className="ui buttons">
@@ -74,7 +43,7 @@ class LikeInput extends Component {
         <Button basic color="red">
           <div>
             <Like
-              likes={this.state.likes || []}
+              likes={this.state.like || []}
               gameId={this.props.gameId || []}
             />
           </div>
@@ -84,7 +53,23 @@ class LikeInput extends Component {
   }
 }
 const mapStateToProps = state => {
-  return { game: state.game, likes: state.likes, count: state.count };
+  return {
+    like: state.like
+  };
 };
 
-export default connect(mapStateToProps)(LikeInput);
+const mapDispatchToProps = dispatch => {
+  return {
+    increaseLike: like => {
+      dispatch(increaseLike(like));
+    },
+    getLikes: () => {
+      dispatch(getLikes());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LikeInput);

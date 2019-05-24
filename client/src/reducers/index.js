@@ -5,8 +5,7 @@ export default function rootReducer(
   state = {
     games: [],
     game: [],
-    like: [],
-    count: 0
+    like: []
   },
   action
 ) {
@@ -14,14 +13,36 @@ export default function rootReducer(
     case "LOADING_GAMES":
       return { ...state, loading: true };
     case "FETCH_GAMES":
-      return { games: action.games };
+      return { ...state, games: action.games };
+    case "SET_GAME":
+      return {
+        ...state,
+
+        game: { ...state.game, game: action.game }
+      };
     case "ADD_LIKE":
-      const like = { game: action.game, count: action.count, id: cuidFn() };
-      return { ...state.like, like };
-    case "INCREASE_COUNT":
-     const count = { count: action.count };
-     return {...state.count, count: state.count + 1 }
+      return {
+        ...state.like,
+        like: action.like
+        // game_id: action.game_id,
+        // like_count: action.like_count
+      };
+    case "GET_LIKES":
+      return {
+        ...state,
+        like: action.like
+      };
+
     default:
       return state;
   }
 }
+// setGame = () => {
+//   const selectedGameId = parseInt(this.props.match.params.gameId);
+//   const selectedGame = this.props.games.find(
+//     game => game.id === selectedGameId
+//   );
+//   this.setState({
+//     game: selectedGame
+//   });
+// };

@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  Image,
-  Icon,
-  Label,
-  Header,
-  Rating
-} from "semantic-ui-react";
+import { Image, Header, Rating } from "semantic-ui-react";
 import { Divider } from "semantic-ui-react";
-import StarRating from "./StarRating";
 
 const GameCard = props => {
   return (

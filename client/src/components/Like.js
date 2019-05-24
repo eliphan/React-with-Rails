@@ -1,7 +1,3 @@
-import React from "react";
-import GameCard from "./GameCard";
-import { Button, Card, Image, Icon, Label, Header } from "semantic-ui-react";
-
 const Like = props => {
   return props.likes
     .filter(e => e.game_id === props.gameId)

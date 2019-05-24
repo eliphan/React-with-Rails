@@ -18,4 +18,8 @@ class GamesController < ApiController
     render json:http.request(request).body
   end
 
+  def show
+    @game = Game.find(params[:id])
+    render json: @game
+  end
 end

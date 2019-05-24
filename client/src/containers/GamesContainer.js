@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import GameList from "../components/GameList";
-import GameCard from "../components/GameCard";
 import { fetchGames } from "../actions/index";
+import { Route } from "react-router-dom";
 import SelectedGamesContainer from "./SelectedGamesContainer";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import GameShow from "./GameShow";
+import { Link } from "react-router-dom";
 
 class GamesContainer extends Component {
   componentDidMount() {
@@ -13,15 +12,9 @@ class GamesContainer extends Component {
   }
 
   render() {
-    console.log(this.props.games);
-
     return (
       <div>
-        <GameList
-          games={this.props.games}
-          summary={this.props.games.summary}
-          cover={this.props.games.cover}
-        />
+        <GameList games={this.props.games} />
       </div>
     );
   }

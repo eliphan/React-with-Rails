@@ -2,80 +2,66 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import GameCard from "../components/GameCard";
 import { fetchGames } from "../actions/index";
-import { addLike } from "../actions/index";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { getLikes } from "../actions/index";
+import NavBar from "../components/NavBar";
 import LikeInput from "../components/LikeInput";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { setGame } from "../actions/index";
 
 class SelectedGamesContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      games: [],
-      game: [],
-      like: []
-    };
-  }
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
 
   componentDidMount() {
-    this.props.fetchGames();
+    this.props.setGame({
+      game: this.props.games.find(
+        game => game.id === parseInt(this.props.match.params.gameId)
+      )
+    });
   }
+  // componentDidMount() {
+  //   this.props.fetchGames();
+  // }
 
-  setGame = () => {
+  // setGame = () => {
+  //   const selectedGameId = parseInt(this.props.match.params.gameId);
+  //   const selectedGame = this.props.games.find(
+  //     game => game.id === selectedGameId
+  //   );
+  //   this.setState({
+  //     game: selectedGame
+  //   });
+  // };
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.game !== prevProps.game) {
+  //     this.setGame();
+  //   }
+  // }
+  getGame = () => {
     const selectedGameId = parseInt(this.props.match.params.gameId);
     const selectedGame = this.props.games.find(
       game => game.id === selectedGameId
     );
-    this.setState({
-      game: selectedGame
-    });
   };
-
-  handleClick = event => {
-    event.preventDefault();
-    const selectedGameId = parseInt(this.props.match.params.gameId);
-    const obj = { game_id: selectedGameId };
-
-    this.setState({
-      like: this.state.like.count + 1
-    });
-    fetch("/api/likes", {
-      method: "POST",
-      header: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        like: { game_id: obj.game_id, like_count: this.state.like.count + 1 }
-      })
-    }).then(res => res.json());
-    // .then(data => console.log(data))
-    // .catch(err => console.log(err));
-  };
-
-  componentDidUpdate(prevProps) {
-    if (this.props.game !== prevProps.game) {
-      this.setGame();
-    }
-  }
 
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div>
         <GameCard
-          game={this.state.game}
-          cover={this.state.game.cover || []}
-          platforms={this.state.game.platforms || []}
-          screenshots={this.state.game.screenshots || []}
-          genres={this.state.game.genres || []}
+          game={this.props.game}
+          cover={this.props.game.cover || []}
+          platforms={this.props.game.platforms || []}
+          screenshots={this.props.game.screenshots || []}
+          genres={this.props.game.genres || []}
           onClick={this.handleClick}
-          likes={this.state.like.count}
         />
-        <LikeInput
-          game={this.state.game}
-          gameId={this.state.game.id}
-          addLike={this.props.addLike}
-        />
+        <LikeInput game={this.props.game} gameId={this.props.game.id} />
       </div>
     );
   }
@@ -85,8 +71,7 @@ const mapStateToProps = state => {
   return {
     games: state.games,
     game: state.game,
-    like: state.like,
-    count: state.count
+    like: state.like
   };
 };
 
@@ -95,14 +80,18 @@ const mapDispatchToProps = dispatch => {
     fetchGames: () => {
       dispatch(fetchGames());
     },
-
-    addLike: like => {
-      dispatch(addLike(like));
+    getLikes: () => {
+      dispatch(getLikes());
+    },
+    setGame: game => {
+      dispatch(setGame(game));
     }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SelectedGamesContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SelectedGamesContainer)
+);
