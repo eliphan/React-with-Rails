@@ -33,7 +33,7 @@ export function increaseLike(like) {
         }
       })
       .then(response => {
-        dispatch({ type: "ADD_LIKE", like: response });
+        dispatch({ type: "ADD_LIKE", like: response.data });
         console.log(response);
       });
   };
@@ -42,7 +42,7 @@ export function increaseLike(like) {
 export function getLikes() {
   return dispatch => {
     axios.get("/api/likes/").then(response => {
-      dispatch({ type: "GET_LIKES", like: response });
+      dispatch({ type: "GET_LIKES", like: response.data });
     });
   };
 }
@@ -56,16 +56,16 @@ export function getLikes() {
 //   });
 // };
 
-export function setGame(games, game) {
+export function setGame(game) {
   return dispatch => {
     dispatch({ type: "LOADING_GAMES" });
     return fetch("/api/games")
       .then(response => response.json())
       .then(responseJson => {
-        dispatch({ type: "FETCH_GAMES", games: responseJson });
-      })
-      .then(responseJson => {
-        dispatch({ type: "SET_GAME", game: game, games: games });
+        dispatch({ type: "SET_GAME", game: game, games: responseJson });
       });
+    // .then(responseJson => {
+    //   dispatch({ type: "SET_GAME", game: game });
+    // });
   };
 }

@@ -8,6 +8,9 @@ import LikeInput from "../components/LikeInput";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { setGame } from "../actions/index";
+import { increaseLike } from "../actions/index";
+import { Button, Icon } from "semantic-ui-react";
+import Like from "../components/Like";
 
 class SelectedGamesContainer extends Component {
   static propTypes = {
@@ -29,15 +32,20 @@ class SelectedGamesContainer extends Component {
     });
   }
 
-  getGame = () => {
-    const selectedGameId = parseInt(this.props.match.params.gameId);
-    const selectedGame = this.props.games.find(
-      game => game.id === selectedGameId
-    );
+  handleOnClick = event => {
+    event.preventDefault();
+    this.props.increaseLike({
+      game_id: this.props.game.game.id,
+      like_count: 1
+    });
   };
-  // componentDidMount() {
-  //   this.props.fetchGames();
-  // }
+
+  // getGame = () => {
+  //   const selectedGameId = parseInt(this.props.match.params.gameId);
+  //   const selectedGame = this.props.games.find(
+  //     game => game.id === selectedGameId
+  //   );
+  // };
 
   // setGame = () => {
   //   const selectedGameId = parseInt(this.props.match.params.gameId);
@@ -50,31 +58,33 @@ class SelectedGamesContainer extends Component {
   // };
 
   // componentDidUpdate(prevProps) {
-  //   if (this.props.game !== prevProps.game) {
-  //     this.setGame();
+  //   if (this.props.like !== prevProps.like) {
+  //     this.props.getLikes();
   //   }
   // }
-  getGame = () => {
-    const selectedGameId = parseInt(this.props.match.params.gameId);
+  // getGame = () => {
+  //   const selectedGameId = parseInt(this.props.match.params.gameId);
 
-    const selectedGame = this.props.games.find(
-      game => game.id === selectedGameId
-    );
-  };
+  //   const selectedGame = this.props.games.find(
+  //     game => game.id === selectedGameId
+  //   );
+  // };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <GameCard
-          game={this.props.game || []}
-          cover={this.props.game.cover || []}
-          platforms={this.props.game.platforms || []}
-          screenshots={this.props.game.screenshots || []}
-          genres={this.props.game.genres || []}
-          onClick={this.handleClick}
+          game={this.props.game.game || []}
+          cover={this.props.game.game.cover || []}
+          platforms={this.props.game.game.platforms || []}
+          screenshots={this.props.game.game.screenshots || []}
+          genres={this.props.game.game.genres || []}
         />
-        <LikeInput game={this.props.game} gameId={this.props.game.id} />
+        <LikeInput
+          game={this.props.game.game}
+          gameId={this.props.game.game.id}
+          onClick={this.handleOnClick}
+        />
       </div>
     );
   }
@@ -95,6 +105,9 @@ const mapDispatchToProps = dispatch => {
     },
     setGame: game => {
       dispatch(setGame(game));
+    },
+    increaseLike: like => {
+      dispatch(increaseLike(like));
     }
   };
 };

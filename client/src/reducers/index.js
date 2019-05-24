@@ -17,15 +17,17 @@ export default function rootReducer(
     case "SET_GAME":
       return {
         ...state,
-        games: state.games,
-        game: { ...state.game, game: action.game }
+        games: action.games,
+
+        like: state.like,
+        ...state,
+        game: action.game
       };
     case "ADD_LIKE":
       return {
-        ...state.like,
-        like: action.like
-        // game_id: action.game_id,
-        // like_count: action.like_count
+        ...state,
+        game_id: action.game_id,
+        like_count: action.like_count
       };
     case "GET_LIKES":
       return {

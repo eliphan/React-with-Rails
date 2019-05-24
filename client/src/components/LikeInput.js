@@ -7,42 +7,28 @@ import { increaseLike } from "../actions/index";
 import { getLikes } from "../actions/index";
 
 class LikeInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0
-    };
-  }
-
-  handleOnClick = event => {
-    event.preventDefault();
-    this.props.increaseLike({
-      game_id: this.props.gameId,
-      like_count: this.state.count + 1
-    });
-  };
-
-  getLikes() {
-    axios.get("/api/likes/").then(response => {
-      this.setState({ like: response.data });
-    });
-  }
-
-  // componentDidMount() {
-  //   this.props.getLikes();
+  // getLikes() {
+  //   axios.get("/api/likes/").then(response => {
+  //     this.setState({ like: response.data });
+  //   });
   // }
 
+  componentDidMount() {
+    this.props.getLikes();
+  }
+
   render() {
+    console.log(this.state);
     return (
       <div className="ui buttons">
-        <Button inverted color="red" onClick={this.handleOnClick}>
+        <Button inverted color="red" onClick={this.props.onClick}>
           <Icon name="heart" />
           Like
         </Button>
         <Button basic color="red">
           <div>
             <Like
-              likes={this.state.like || []}
+              likes={this.props.like || []}
               gameId={this.props.gameId || []}
             />
           </div>
