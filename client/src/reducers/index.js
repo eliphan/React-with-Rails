@@ -17,7 +17,7 @@ export default function rootReducer(
     case "SET_GAME":
       return {
         ...state,
-
+        games: state.games,
         game: { ...state.game, game: action.game }
       };
     case "ADD_LIKE":

@@ -17,12 +17,24 @@ class SelectedGamesContainer extends Component {
   };
 
   componentDidMount() {
+    // const selectedGameId = parseInt(this.props.match.params.gameId);
+    // const selectedGame = this.props.games.find(
+    //   game => game.id === selectedGameId
+    // );
+
     this.props.setGame({
       game: this.props.games.find(
         game => game.id === parseInt(this.props.match.params.gameId)
       )
     });
   }
+
+  getGame = () => {
+    const selectedGameId = parseInt(this.props.match.params.gameId);
+    const selectedGame = this.props.games.find(
+      game => game.id === selectedGameId
+    );
+  };
   // componentDidMount() {
   //   this.props.fetchGames();
   // }
@@ -44,6 +56,7 @@ class SelectedGamesContainer extends Component {
   // }
   getGame = () => {
     const selectedGameId = parseInt(this.props.match.params.gameId);
+
     const selectedGame = this.props.games.find(
       game => game.id === selectedGameId
     );
@@ -54,7 +67,7 @@ class SelectedGamesContainer extends Component {
     return (
       <div>
         <GameCard
-          game={this.props.game}
+          game={this.props.game || []}
           cover={this.props.game.cover || []}
           platforms={this.props.game.platforms || []}
           screenshots={this.props.game.screenshots || []}
@@ -77,9 +90,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchGames: () => {
-      dispatch(fetchGames());
-    },
     getLikes: () => {
       dispatch(getLikes());
     },

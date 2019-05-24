@@ -56,7 +56,7 @@ export function getLikes() {
 //   });
 // };
 
-export function setGame(game) {
+export function setGame(games, game) {
   return dispatch => {
     dispatch({ type: "LOADING_GAMES" });
     return fetch("/api/games")
@@ -64,8 +64,8 @@ export function setGame(game) {
       .then(responseJson => {
         dispatch({ type: "FETCH_GAMES", games: responseJson });
       })
-      .then(res => {
-        dispatch({ type: "SET_GAME", game: game });
+      .then(responseJson => {
+        dispatch({ type: "SET_GAME", game: game, games: games });
       });
   };
 }
