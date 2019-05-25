@@ -1,13 +1,11 @@
 {
-  "name": "list-of-games",
-  "license": "MIT",
+  "name": "code-log",
   "engines": {
-    "node": "10.15.3",
-    "yarn": "1.15.2"
+    "node": "11.5.0"
   },
   "scripts": {
-    "build": "yarn --cwd client install && yarn --cwd client build",
+    "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "yarn build && yarn deploy"
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   }
 }
