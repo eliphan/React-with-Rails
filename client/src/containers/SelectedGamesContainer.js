@@ -40,29 +40,6 @@ class SelectedGamesContainer extends Component {
     });
   };
 
-  // setGame = () => {
-  //   const selectedGameId = parseInt(this.props.match.params.gameId);
-  //   const selectedGame = this.props.games.find(
-  //     game => game.id === selectedGameId
-  //   );
-  //   this.setState({
-  //     game: selectedGame
-  //   });
-  // };
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.like !== prevProps.like) {
-  //     this.props.getLikes();
-  //   }
-  // }
-  // getGame = () => {
-  //   const selectedGameId = parseInt(this.props.match.params.gameId);
-
-  //   const selectedGame = this.props.games.find(
-  //     game => game.id === selectedGameId
-  //   );
-  // };
-
   render() {
     return (
       <div>
@@ -93,9 +70,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getLikes: () => {
-      dispatch(getLikes());
-    },
     setGame: game => {
       dispatch(setGame(game));
     },

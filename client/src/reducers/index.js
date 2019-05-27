@@ -19,32 +19,21 @@ export default function rootReducer(
         ...state,
         games: action.games,
 
-        like: state.like,
         ...state,
         game: action.game
       };
     case "ADD_LIKE":
       return {
         ...state,
-        game_id: action.game_id,
-        like_count: action.like_count
+        like: [...state.like, action.like]
       };
     case "GET_LIKES":
       return {
         ...state,
-        like: action.like
+        like: [...state.like, action.like]
       };
 
     default:
       return state;
   }
 }
-// setGame = () => {
-//   const selectedGameId = parseInt(this.props.match.params.gameId);
-//   const selectedGame = this.props.games.find(
-//     game => game.id === selectedGameId
-//   );
-//   this.setState({
-//     game: selectedGame
-//   });
-// };

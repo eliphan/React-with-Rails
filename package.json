@@ -1,5 +1,6 @@
 {
   "name": "game-search",
+  "homepage": "http://eliphan.github.io/React-with-Rails",
   "engines": {
     "node": "11.5.0"
   },

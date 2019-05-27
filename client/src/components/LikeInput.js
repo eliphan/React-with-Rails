@@ -18,7 +18,7 @@ class LikeInput extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div className="ui buttons">
         <Button inverted color="red" onClick={this.props.onClick}>
