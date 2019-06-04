@@ -1,24 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Icon } from "semantic-ui-react";
-import axios from "axios";
 import Like from "./Like";
 import { increaseLike } from "../actions/index";
 import { getLikes } from "../actions/index";
 
 class LikeInput extends Component {
-  // getLikes() {
-  //   axios.get("/api/likes/").then(response => {
-  //     this.setState({ like: response.data });
-  //   });
-  // }
-
   componentDidMount() {
     this.props.getLikes();
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="ui buttons">
         <Button inverted color="red" onClick={this.props.onClick}>
@@ -45,9 +37,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    increaseLike: like => {
-      dispatch(increaseLike(like));
-    },
     getLikes: () => {
       dispatch(getLikes());
     }

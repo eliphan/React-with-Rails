@@ -18,7 +18,6 @@ export default function rootReducer(
       return {
         ...state,
         games: action.games,
-
         ...state,
         game: action.game
       };
@@ -32,6 +31,17 @@ export default function rootReducer(
         ...state,
         like: [...state.like, action.like]
       };
+    // case "ADD_COMMENT":
+    //   return {
+    //     ...state,
+    //     comments: [...state.comments, action.comment]
+    //   };
+    // case "GET_COMMENTS":
+    //   return {
+    //     ...state,
+    //     loading: true,
+    //     comments: action.comments
+    //   }
 
     default:
       return state;

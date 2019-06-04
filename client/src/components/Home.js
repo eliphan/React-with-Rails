@@ -6,12 +6,10 @@ const Home = () => {
   return (
     <div className="wrapper">
       <div className="home-container">
-        <p>Select a genre</p>
+        <p>Which Video Games Are Most Popular Right Now?</p>
         <Link to="/all">
-          <button className="css-button">All genres</button>
+          <button className="css-button">Click here to find out</button>
         </Link>
-        <button className="css-button">RPG (WIP)</button>
-        <button className="css-button">WIP</button>
       </div>
     </div>
   );

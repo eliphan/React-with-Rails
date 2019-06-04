@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import GameList from "../components/GameList";
 import { fetchGames } from "../actions/index";
-import { Route } from "react-router-dom";
-import SelectedGamesContainer from "./SelectedGamesContainer";
-import { Link } from "react-router-dom";
 
 class GamesContainer extends Component {
   componentDidMount() {

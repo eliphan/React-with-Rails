@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import GameCard from "../components/GameCard";
-import { fetchGames } from "../actions/index";
-import { getLikes } from "../actions/index";
-import NavBar from "../components/NavBar";
 import LikeInput from "../components/LikeInput";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { setGame } from "../actions/index";
 import { increaseLike } from "../actions/index";
-import { Button, Icon } from "semantic-ui-react";
 import Like from "../components/Like";
+import CommentsContainer from "./CommentsContainer";
 
 class SelectedGamesContainer extends Component {
   static propTypes = {
@@ -34,6 +31,7 @@ class SelectedGamesContainer extends Component {
 
   handleOnClick = event => {
     event.preventDefault();
+
     this.props.increaseLike({
       game_id: this.props.game.game.id,
       like_count: 1
@@ -55,6 +53,7 @@ class SelectedGamesContainer extends Component {
           gameId={this.props.game.game.id}
           onClick={this.handleOnClick}
         />
+        <CommentsContainer />
       </div>
     );
   }
@@ -79,9 +78,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SelectedGamesContainer)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SelectedGamesContainer);

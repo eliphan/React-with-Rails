@@ -34,7 +34,6 @@ export function increaseLike(like) {
       })
       .then(response => {
         dispatch({ type: "ADD_LIKE", like: response.data });
-        console.log(response);
       });
   };
 }
@@ -46,15 +45,6 @@ export function getLikes() {
     });
   };
 }
-// setGame = () => {
-//   const selectedGameId = parseInt(this.props.match.params.gameId);
-//   const selectedGame = this.props.games.find(
-//     game => game.id === selectedGameId
-//   );
-//   this.setState({
-//     game: selectedGame
-//   });
-// };
 
 export function setGame(game) {
   return dispatch => {
@@ -64,8 +54,28 @@ export function setGame(game) {
       .then(responseJson => {
         dispatch({ type: "SET_GAME", game: game, games: responseJson });
       });
-    // .then(responseJson => {
-    //   dispatch({ type: "SET_GAME", game: game });
-    // });
   };
 }
+
+// export function addComment(comment) {
+//   return dispatch => {
+//     axios
+//       .post("/api/comments",
+//         headers: { "Content-Type": "application/json" },
+//         comment: {
+//           game_id: JSON.stringify(comment.game_id),
+//           content: JSON.stringify(comment.content)
+//         }
+//       })
+//       .then(resp => resp.json())
+//       .then(comment => dispatch({ type: "ADD_COMMENT", comment }));
+//   };
+// }
+
+// export function getComments() {
+//   return dispatch => {
+//     axios.get("/api/comments").then(response => {
+//       dispatch({ type: "GET_COMMENTS", comments: response.data });
+//     });
+//   };
+// }
